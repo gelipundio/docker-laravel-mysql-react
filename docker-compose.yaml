@@ -1,0 +1,27 @@
+version: '2'
+
+services:
+  server:
+    image: 'ganiutomo/docker-php-laravel'
+    ports:
+      - '80:80'
+    depends_on:
+      - 'db'
+  db:
+    image: 'mysql'
+    ports:
+      - '3306:3306'
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+  client:
+    image: 'node:9-alpine'
+    ports:
+      - '3000:3000'
+    depends_on:
+      - 'server'
+
+
+# https://hub.docker.com/_/mysql/
+# https://hub.docker.com/r/ganiutomo/docker-php-laravel/
+# https://hub.docker.com/_/node/
